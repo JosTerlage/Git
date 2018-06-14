@@ -21,5 +21,23 @@ sudo sed -i -e 's/allowed_hosts=127.0.0.1,::1/allowed_hosts=127.0.0.1,::1,10.0.0
 sudo systemctl start nrpe.service
 sudo ufw allow 5666/tcp
 sudo mkdir /usr/local/nagios/etc/servers/
-cd /usr/local/nagios/etc/servers/ 
-clone git 
+sudo touch /usr/local/nagios/etc/servers/UBU1604Monitor.cfg
+sudo bash -c 'echo "define host {
+        use                             linux-server
+        host_name                       UBU1604Monitor
+        alias                           My client server
+        address                         UBU1604Monitor
+        max_check_attempts              5
+        check_period                    24x7
+        notification_interval           30
+        notification_period             24x7
+}
+
+define service {
+        use                             generic-service
+        host_name                       UBU1604Monitor
+        service_description             CPU load
+        check_command                   check_nrpe!check_load
+}
+" >> /usr/local/nagios/etc/servers/UBU1604Monitor.cfg'
+sudo systemctl restart nagios
