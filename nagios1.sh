@@ -18,3 +18,8 @@ sudo make install
 sudo make install-config
 sudo make install-init
 sudo sed -i -e 's/allowed_hosts=127.0.0.1,::1/allowed_hosts=127.0.0.1,::1,10.0.0.6/g' /usr/local/nagios/etc/nrpe.cfg
+sudo systemctl start nrpe.service
+sudo ufw allow 5666/tcp
+sudo mkdir /usr/local/nagios/etc/servers/
+cd /usr/local/nagios/etc/servers/ 
+clone git 
