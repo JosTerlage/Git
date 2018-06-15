@@ -1,4 +1,4 @@
-installnagios:
+saltnagios:
   pkg.installed:
     - pkgs:
       - nagios-nrpe-server
