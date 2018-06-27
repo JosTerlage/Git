@@ -1,6 +1,6 @@
 sudo useradd nagios
 sudo apt-get update
-sudo apt-get install build-essential libgd2-xpm-dev openssl libssl-dev unzip
+sudo apt-get install build-essential libgd2-xpm-dev openssl libssl-dev unzip -y
 cd
 curl -L -O http://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
 tar zxf nagios-plugins-*.tar.gz
