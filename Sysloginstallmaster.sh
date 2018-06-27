@@ -1,4 +1,4 @@
-sudo apt install syslog-ng
+sudo apt install syslog-ng -y
 sudo cp /etc/syslog-ng/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf.BAK
 sudo rm /etc/syslog-ng/syslog-ng.conf
 sudo touch /etc/syslog-ng/syslog-ng.conf
