@@ -1,9 +1,9 @@
 run install_nagios_server:
   cmd:
     - run
-    - name: /home/Git/Nagiosinstallmaster.sh
+    - name: /home/jos/Git/Nagiosinstallmaster.sh
 
 run install_syslog_server:
   cmd:
     - run
-    - name: /home/Git/Sysloginstallmaster.sh
+    - name: /home/jos/Git/Sysloginstallmaster.sh

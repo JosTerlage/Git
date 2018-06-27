@@ -1,1 +1,5 @@
 git clone https://JosTerlage:wachtwoord@github.com/JosTerlage/Git.git
+
+sudo salt '*Master*' state.apply -t 800 masterinstall
+
+sudo cd Git/ && sudo chmod +x minioninstall.sh Nagiosinstallmaster.sh Saltstackinstallmaster.sh Saltstackinstallminion.sh Sysloginstallmaster.sh
