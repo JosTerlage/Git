@@ -33,3 +33,16 @@ sudo make
 sudo make install
 sudo systemctl restart nagios.service
 cd
+curl -L -O https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-3.2.1/nrpe-3.2.1.tar.gz
+tar zxf nrpe-*.tar.gz
+cd nrpe-*
+./configure
+make check_nrpe
+sudo make install-plugin
+sudo sed -i -e 's%#cfg_dir=/usr/local/nagios/etc/servers%cfg_dir=/usr/local/nagios/etc/servers%g' /usr/local/nagios/etc/nagios.cfg
+sudo mkdir /usr/local/nagios/etc/servers
+echo "
+        define command	{
+        	command_name check_nrpe
+        	command_line $USER1$/check_nrpe -H $HOSTADDRESS$ -c $ARG1$
+          }" >> /usr/local/nagios/etc/objects/commands.cfg

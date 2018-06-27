@@ -3,21 +3,86 @@ read -p "What is the monitored server private ip?" ipaddress
 sudo mkdir /usr/local/nagios/etc/servers/
 sudo touch /usr/local/nagios/etc/servers/"$hostname".cfg
 echo "define host {
-        use                             linux-server
-        host_name                       "$hostname"
-        alias                           My client server
-        address                         "$ipaddress"
-        max_check_attempts              5
-        check_period                    24x7
-        notification_interval           30
-        notification_period             24x7
+        use                          linux-server
+        host_name                    "$hostname"
+        alias                        "$hostname"
+        address                      "$ipaddress"
+        register                     1
 }
-
 define service {
-        use                             generic-service
-        host_name                       "$hostname"
-        service_description             CPU load
-        check_command                   check_nrpe!check_load
+      host_name                       "$hostname"
+      service_description             PING
+      check_command                   check_ping!100.0,20%!500.0,60%
+      max_check_attempts              2
+      check_interval                  2
+      retry_interval                  2
+      check_period                    24x7
+      check_freshness                 1
+      contact_groups                  admins
+      notification_interval           2
+      notification_period             24x7
+      notifications_enabled           1
+      register                        1
+}
+define service {
+      host_name                       "$hostname"
+      service_description             Check Users
+      check_command           check_local_users!20!50
+      max_check_attempts              2
+      check_interval                  2
+      retry_interval                  2
+      check_period                    24x7
+      check_freshness                 1
+      contact_groups                  admins
+      notification_interval           2
+      notification_period             24x7
+      notifications_enabled           1
+      register                        1
+}
+define service {
+      host_name                       "$hostname"
+      service_description             Local Disk
+      check_command                   check_local_disk!20%!10%!/
+      max_check_attempts              2
+      check_interval                  2
+      retry_interval                  2
+      check_period                    24x7
+      check_freshness                 1
+      contact_groups                  admins
+      notification_interval           2
+      notification_period             24x7
+      notifications_enabled           1
+      register                        1
+}
+define service {
+      host_name                       "$hostname"
+      service_description             Check SSH
+      check_command                   check_ssh
+      max_check_attempts              2
+      check_interval                  2
+      retry_interval                  2
+      check_period                    24x7
+      check_freshness                 1
+      contact_groups                  admins
+      notification_interval           2
+      notification_period             24x7
+      notifications_enabled           1
+      register                        1
+}
+define service {
+      host_name                       "$hostname"
+      service_description             Total Process
+      check_command                   check_local_procs!250!400!RSZDT
+      max_check_attempts              2
+      check_interval                  2
+      retry_interval                  2
+      check_period                    24x7
+      check_freshness                 1
+      contact_groups                  admins
+      notification_interval           2
+      notification_period             24x7
+      notifications_enabled           1
+      register                        1
 }
 " | sudo tee -a /usr/local/nagios/etc/servers/$hostname.cfg
 sudo systemctl restart nagios
