@@ -2,8 +2,7 @@ sudo apt install syslog-ng
 sudo cp /etc/syslog-ng/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf.BAK
 sudo rm /etc/syslog-ng/syslog-ng.conf
 sudo touch /etc/syslog-ng/syslog-ng.conf
-sudo -i
-sudo echo '@version: 3.5
+echo '@version: 3.5
 @include "scl.conf"
 @include "`scl-root`/system/tty10.conf"
     options {
@@ -25,8 +24,7 @@ sudo echo '@version: 3.5
             perm(0777)
             ); };
     log { source(s_local); source(s_network); destination(d_logs); };
-' >> /etc/syslog-ng/syslog-ng.conf
-exit
+' | sudo tee -a /etc/syslog-ng/syslog-ng.conf
 sudo ufw allow 514
 sudo ufw reload
 sudo mkdir /var/log/syslog-ng
