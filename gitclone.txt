@@ -1,0 +1,1 @@
+git clone https://JosTerlage:wachtwoord@github.com/JosTerlage/Git.git
