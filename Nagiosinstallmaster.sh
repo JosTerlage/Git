@@ -7,10 +7,11 @@ tar xzf nagioscore.tar.gz
 cd /tmp/nagioscore-nagios-4.3.4/
 sudo ./configure --with-httpd-conf=/etc/apache2/sites-enabled
 sudo make all
-sudo make install-groups-users
+sudo useradd nagios
 sudo usermod -a -G nagios www-data
 sudo make install
-sudo make install-daemoninit
+sudo make install-init
+sudo update-rc.d nagios defaults
 sudo make install-commandmode
 sudo make install-config
 sudo make install-webconf
