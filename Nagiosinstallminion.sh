@@ -17,8 +17,8 @@ make all
 sudo make install
 sudo make install-config
 sudo make install-init
-sudo sed -i -e 's/allowed_hosts=127.0.0.1,::1/allowed_hosts=127.0.0.1,::1,10.0.0.13/g' /usr/local/nagios/etc/nrpe.cfg
-sudo sed -i -e 's/#server_address=127.0.0.1/server_address=10.0.0.13/g' /usr/local/nagios/etc/nrpe.cfg
+sudo sed -i -e 's/allowed_hosts=127.0.0.1,::1/allowed_hosts=127.0.0.1,::1,10.0.0.19/g' /usr/local/nagios/etc/nrpe.cfg
+sudo sed -i -e 's/#server_address=127.0.0.1/server_address=10.0.0.19/g' /usr/local/nagios/etc/nrpe.cfg
 sudo systemctl start nrpe.service
 sudo ufw allow 5666
 sudo ufw reload

@@ -15,5 +15,5 @@ sudo salt-key --list-all
 
 sudo mkdir /srv/salt && sudo mv Git/masterinstall.sls /srv/salt && sudo mv Git/minioninstall.sls /srv/salt
 
-sudo salt '*Master*' state.apply -t 2000 masterinstall
-sudo salt '*Minion*' state.apply -t 2000 minioninstall
+sudo salt '*Master*' state.apply -t 10000 masterinstall
+sudo salt '*Minion*' state.apply -t 10000 minioninstall
