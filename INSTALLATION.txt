@@ -7,13 +7,16 @@ IP's to change in code before install:
 
 INSTALLATION:
 
-git clone https://github.com/JosTerlage/Git.git && cd Git/ && sudo chmod +x Nagiosaddhost.sh Nagiosinstallmaster.sh Nagiosinstallminion.sh Saltstackinstallmaster.sh Saltstackinstallminion.sh Sysloginstallmaster.sh Sysloginstallminion.sh && cd
+git clone https://github.com/JosTerlage/Git.git && cd Git/ && sudo chmod +x Dockerinstallmaster.sh Dockerinstallminion.sh Nagiosaddhost.sh Nagiosinstallmaster.sh Nagiosinstallminion.sh Saltstackinstallmaster.sh Saltstackinstallminion.sh Sysloginstallmaster.sh Sysloginstallminion.sh && cd
 
 install salt using sh file
 
 sudo salt-key --list-all
+sudo salt-key --accept-all
 
 sudo mkdir /srv/salt && sudo mv Git/masterinstall.sls /srv/salt && sudo mv Git/minioninstall.sls /srv/salt
 
 sudo salt '*Master*' state.apply -t 10000 masterinstall
 sudo salt '*Minion*' state.apply -t 10000 minioninstall
+
+add nagios host
