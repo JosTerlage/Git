@@ -2,7 +2,7 @@ install salt using sh file
 
 sudo salt-key --list-all
 
-git clone https://JosTerlage:Joshuaenmarco2@github.com/JosTerlage/Git.git
+git clone https://github.com/JosTerlage/Git.git
 
 sudo mkdir /srv/salt
 sudo mv Git/masterinstall.sls /srv/salt
