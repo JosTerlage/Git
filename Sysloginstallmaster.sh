@@ -31,3 +31,4 @@ sudo mkdir /var/log/syslog-ng
 sudo touch /var/log/syslog-ng/logs.txt
 sudo chmod 777 /var/log/syslog-ng/logs.txt
 sudo systemctl start syslog-ng
+sudo systemctl restart syslog-ng

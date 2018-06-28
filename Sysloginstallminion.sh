@@ -13,3 +13,4 @@ log { source(s_local);destination(d_syslog_tcp); };
 sudo ufw allow 514
 sudo ufw reload
 sudo systemctl start syslog-ng
+sudo systemctl restart syslog-ng
