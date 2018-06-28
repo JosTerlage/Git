@@ -7,7 +7,7 @@ echo '@version: 3.5
 @include "`scl-root`/system/tty10.conf"
 source s_local { system(); internal(); };
 destination d_syslog_tcp {
-              syslog(10.0.0.19 transport("tcp") port(514)); };
+              syslog(10.0.0.22 transport("tcp") port(514)); };
 log { source(s_local);destination(d_syslog_tcp); };
 ' | sudo tee -a /etc/syslog-ng/syslog-ng.conf
 sudo ufw allow 514
